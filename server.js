@@ -2,6 +2,16 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const path = require("path");
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.get("/api/countries", (req, res) => {
   const filePath = path.join(__dirname, "countries.json");
